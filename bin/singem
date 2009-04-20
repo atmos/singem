@@ -17,4 +17,4 @@ RubiGen::Base.prepend_sources(*[
   RubiGen::PathSource.new(:app, File.join(File.dirname(__FILE__), "..", "lib/generators"))
 ])
 
-RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'singen', :backtrace => true)
+RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'singem', :backtrace => true)

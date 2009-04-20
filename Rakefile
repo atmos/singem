@@ -4,11 +4,11 @@ require 'rubygems/specification'
 require 'date'
 require 'spec/rake/spectask'
 
-GEM = "singen"
+GEM = "singem"
 GEM_VERSION = "0.0.1"
 AUTHOR = "Corey Donohoe"
 EMAIL = "atmos@atmos.org"
-HOMEPAGE = "http://github.com/atmos/singen"
+HOMEPAGE = "http://github.com/atmos/singem"
 SUMMARY = "A gem that provides generators for sinatra apps, ready to go with rack-test/webrat/randexp and others"
 
 spec = Gem::Specification.new do |s|
@@ -31,7 +31,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency 'haml', "~>2.0.9"
 
   s.bindir = "bin"
-  s.executables = %w( singen )
+  s.executables = %w( singem )
   s.require_path = 'lib'
   s.autorequire = GEM
   s.files = %w(LICENSE README.md Rakefile TODO) + Dir.glob("{lib,spec}/**/*")
