@@ -1,0 +1,11 @@
+require 'rubygems'
+require '<%= name %>'
+
+#DataMapper.setup(:default, "mysql://atmos:1Rsbe46p7J@localhost/lifeline_production")
+
+class <%= name.camelize %>Site < <%= name.camelize %>::App
+  set :public,      File.expand_path(File.dirname(__FILE__), "public")
+  set :environment, :production
+end
+
+run <%= name.camelize %>Site

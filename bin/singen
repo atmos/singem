@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'rubigen'
+
+if %w(-v --version).include? ARGV.first
+  require File.dirname(__FILE__) + "/../lib/newgem"
+  puts "#{File.basename($0)} #{Newgem::VERSION}"
+  exit(0)
+end
+
+require 'rubigen/scripts/generate'
+
+require "pp"
+RubiGen::Base.use_application_sources! :rubygems
+RubiGen::Base.prepend_sources(*[ 
+  RubiGen::PathSource.new(:app, File.join(File.dirname(__FILE__), "..", "lib/generators"))
+])
+
+RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'singen', :backtrace => true)
