@@ -1,17 +1,16 @@
-singen
+singem
 ======
 
-This is my basic template for starting a new sinatra app
+*S*inatra *G*em Generator
 
 Installation
 ============
 
-    % rake repackage
-    % sudo gem install pkg/*.gem
+    % sudo gem install singem -s http://gems.github.com
     % hash -r
 
 Usage
 =====
-    % singen foo
+    % singem foo
     % cd foo
     % rake
