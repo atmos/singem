@@ -1,0 +1,59 @@
+require File.dirname(__FILE__) + '/spec_helper'
+
+describe "visiting /" do
+  describe "when unauthenticated" do
+    it "should display the about page" do
+      get '/'
+      last_response.should have_selector("h2:contains('Do you use twitter?')")
+    end
+  end
+  describe "when unauthorized" do
+    it "should raise an error" do
+      lambda { unauthorized_quentin }.should raise_error
+    end
+  end
+  describe "when authenticated" do
+    it "should display a greeting" do
+      login_quentin
+      get '/'
+      last_response.should have_selector("h2:contains('Hello There, you little twitterer!')")
+    end
+  end
+end
+
+describe "visiting /peace" do
+  describe "when authenticated" do
+    it "should clear the session and redirect to the home page" do
+      login_quentin
+      get '/peace'
+      last_response.headers['Location'].should eql('/')
+
+      get last_response.headers['Location']
+      last_response.should have_selector("h2:contains('Do you use twitter?')")
+    end
+  end
+end
+
+describe "triggering a 404" do
+  it "should display the failed page" do
+    pending
+    get '/lost'
+    last_response.should have_selector("p:contains('Something went wonky.')")
+  end
+end
+
+describe "visiting /authenticate" do
+  it "should redirect to twitter for authentication" do
+    get '/authenticate'
+    last_response.headers['Location'].should eql('http://twitter.com/oauth/authorize?oauth_token=requestkey')
+  end
+end
+
+describe "<%= name.camelize %>::User" do
+  it "can create users from twitter ids that exist" do
+    lambda { <%= name.camelize %>::User.create_twitter_user('atmos') }.should_not raise_error
+  end
+  it "can't create users from twitter ids that do not exist" do
+    lambda { <%= name.camelize %>::User.create_twitter_user(/\w{18}/.gen) }.should raise_error(<%= name.camelize %>::User::UserCreationError)
+  end
+end

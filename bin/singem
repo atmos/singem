@@ -17,4 +17,8 @@ RubiGen::Base.prepend_sources(*[
   RubiGen::PathSource.new(:app, File.join(File.dirname(__FILE__), "..", "lib/generators"))
 ])
 
-RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'singem', :backtrace => true)
+if ARGV.delete "--twitter"
+  RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'twitter', :backtrace => true)
+else
+  RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'singem', :backtrace => true)
+end
