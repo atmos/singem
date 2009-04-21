@@ -6,7 +6,8 @@ singem
 Installation
 ============
 
-    % sudo gem install singem -s http://gems.github.com
+    % rake repackage
+    % rake install
     % hash -r
 
 Usage
