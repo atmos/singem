@@ -19,6 +19,8 @@ RubiGen::Base.prepend_sources(*[
 
 if ARGV.delete "--twitter"
   RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'twitter', :backtrace => true)
-else
+elsif ARGV.delete "--old-school"
   RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'singem', :backtrace => true)
+else
+  RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'cucumber', :backtrace => true)
 end
