@@ -6,16 +6,25 @@ singem
 Installation
 ============
 
+    % sudo gem install singem
+
+Or build it yourself
+
     % rake repackage
     % rake install
-    % hash -r
 
 Usage
 =====
 
-Basic Sinatra App, no sessions
-------------------------------
+Basic Sinatra App, no sessions, cucumber testing
+------------------------------------------------
     % singem foo
+    % cd foo
+    % rake
+
+Basic Sinatra App, no sessions, rspec rack-test
+-----------------------------------------------
+    % singem --old-school foo
     % cd foo
     % rake
 

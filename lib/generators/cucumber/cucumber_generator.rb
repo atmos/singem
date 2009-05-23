@@ -32,6 +32,11 @@ class CucumberGenerator < RubiGen::Base
       m.template "features/basics.feature.erb", "features/#{name}.feature"
       m.template "features/step_definitions/basics.rb.erb", "features/step_definitions/#{name}.rb"
 
+      # rspec stubs
+      m.template "spec/spec_helper.rb.erb", "spec/spec_helper.rb"
+      m.template "spec/templates_spec.rb.erb", "spec/#{name}_spec.rb"
+      m.template "spec/fixtures.rb.erb", "spec/fixtures.rb"
+
       %w(LICENSE Rakefile README.md).each do |file| 
         m.template file, file
       end
