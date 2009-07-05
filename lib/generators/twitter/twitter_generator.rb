@@ -38,6 +38,7 @@ class TwitterGenerator < RubiGen::Base
 
       # rspec stubs
       m.template "spec/spec_helper.rb.erb", "spec/spec_helper.rb"
+      m.template "spec/helpers.rb.erb", "spec/helpers.rb"
       m.template "spec/templates_spec.rb.erb", "spec/#{name}_spec.rb"
       m.template "spec/fixtures.rb.erb", "spec/fixtures.rb"
 
