@@ -19,6 +19,8 @@ class TwitterGenerator < RubiGen::Base
       m.directory ''
       BASEDIRS.each { |path| m.directory path }
       m.directory "lib/#{name}"
+      m.directory "features/support"
+      m.directory "features/step_definitions"
       m.directory "lib/#{name}/sinatra"
       m.directory "lib/#{name}/models"
       m.directory "lib/#{name}/views"
@@ -29,6 +31,12 @@ class TwitterGenerator < RubiGen::Base
       m.template "lib/templates/sinatra/app.rb.erb", "lib/#{name}/sinatra/app.rb"
       m.template "lib/templates/models/user.rb.erb", "lib/#{name}/models/user.rb"
 
+      # cucumber stubs
+      m.template "features/support/env.rb.erb", "features/support/env.rb"
+      m.template "features/basics.feature.erb", "features/#{name}.feature"
+      m.template "features/step_definitions/basics.rb.erb", "features/step_definitions/#{name}.rb"
+
+      # rspec stubs
       m.template "spec/spec_helper.rb.erb", "spec/spec_helper.rb"
       m.template "spec/templates_spec.rb.erb", "spec/#{name}_spec.rb"
       m.template "spec/fixtures.rb.erb", "spec/fixtures.rb"
