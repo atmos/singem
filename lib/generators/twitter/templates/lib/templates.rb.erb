@@ -1,19 +1,10 @@
-gem 'oauth'
 require 'oauth'
-gem 'json'
 require 'json'
-gem 'haml', '~>2.0.9'
 require 'haml/util'
 require 'haml/engine'
-gem 'curb'
 require 'curb'
 require 'logger'
 
-gem 'data_objects', '~>0.9.11'
-gem 'dm-core', '~>0.9.10'
-gem 'dm-types', '~>0.9.10'
-gem 'dm-validations', '~>0.9.10'
-gem 'dm-timestamps', '~>0.9.10'
 require 'dm-core'
 require 'dm-types'
 require 'dm-validations'
@@ -49,6 +40,12 @@ module <%= name.camelize %>
       retry if (retries -= 1) > 0
     end
     yield
+  end
+
+  def self.app
+    @app ||= Rack::Builder.new do
+      run <%= name.camelize %>::App
+    end
   end
 end
 

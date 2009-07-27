@@ -1,12 +1,14 @@
-$TESTING=true
-$:.push File.join(File.dirname(__FILE__), '..', 'lib')
-require 'rubygems'
-require 'randexp'
-require '<%= name %>'
+ENV['RACK_ENV'] ||= 'development'
+require File.join(File.dirname(__FILE__), '..', 'lib', '<%= name %>')
+gem "rack-test", ">=0.4.0"
+gem "webrat", "~>0.4.4"
+gem "fakeweb", ">=1.2.5"
+gem "randexp", ">=0.1.4"
+gem "dm-sweatshop", ">=0.9.11"
+
 require 'rack/test'
 require 'webrat'
 require 'dm-sweatshop'
-gem 'fakeweb', '~>1.2.4'
 require 'fakeweb'
 require 'pp'
 
@@ -16,6 +18,11 @@ ENV['<%= name.upcase %>_READSECRET'] = /\w{18}/.gen
 
 require File.dirname(__FILE__)+'/fixtures'
 require File.dirname(__FILE__)+'/helpers'
+
+Webrat.configure do |config|
+  config.mode = :rack_test
+  config.application_port = 4567
+end
 
 DataMapper.setup(:default, 'sqlite3::memory:')
 
@@ -34,5 +41,9 @@ Spec::Runner.configure do |config|
        {:body => "",            :status => ["401", "Unauthorized"]},
        {:body => "",            :status => ["403", "Forbidden"]},
        {:body => "Bad Gateway", :status => ["502", "Bad Gateway"]} ])
+  end
+
+  def app
+    <%= name.camelize %>.app
   end
 end

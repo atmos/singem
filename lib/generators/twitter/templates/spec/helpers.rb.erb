@@ -12,9 +12,7 @@ end
 
 module <%= name.camelize %>::AppHelpers
   def app
-    @app = Rack::Builder.new do
-      run <%= name.camelize %>::App
-    end
+    <%= name.camelize %>.app
   end
 
   def login_quentin

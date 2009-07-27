@@ -1,11 +1,10 @@
 require 'rubygems'
-require '<%= name %>'
+gem 'sinatra', ">=0.9.4"
+gem 'haml', ">=2.2.2"
+require File.join(File.dirname(__FILE__), 'lib', '<%= name %>')
 
 #DataMapper.setup(:default, "mysql://atmos:fail@localhost/<%= name.capitalize %>_production")
 
-class <%= name.camelize %>Site < <%= name.camelize %>::App
-  set :public,      File.expand_path(File.dirname(__FILE__), "public")
-  set :environment, :production
-end
+use Rack::Static, :urls => ["/css", "/img", "/js"], :root => "public"
 
-run <%= name.camelize %>Site
+run <%= name.camelize %>.app

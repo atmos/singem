@@ -1,11 +1,14 @@
-$TESTING=true
-$:.push File.join(File.dirname(__FILE__), '..', 'lib')
-require 'rubygems'
+ENV['RACK_ENV'] ||= 'development'
+require File.join(File.dirname(__FILE__), '..', 'lib', '<%= name %>')
+gem "rack-test", ">=0.4.0"
+gem "webrat", "~>0.4.4"
+gem "fakeweb", ">=1.2.5"
+gem "randexp", ">=0.1.4"
+
 require 'randexp'
-require '<%= name %>'
-#require 'dm-core'
 require 'rack/test'
-require 'webrat/sinatra'
+require 'webrat'
+#require 'dm-core'
 #require 'dm-sweatshop'
 require 'fakeweb'
 require 'pp'
@@ -15,11 +18,9 @@ FakeWeb.allow_net_connect = false
 #require File.dirname(__FILE__)+'/fixtures'
 #DataMapper.setup(:default, 'sqlite3::memory:')
 
-class Net::HTTPResponse 
-  def body=(content) 
-    @body = content 
-    @read = true 
-  end 
+Webrat.configure do |config|
+  config.mode = :rack_test
+  config.application_port = 4567
 end
 
 Spec::Runner.configure do |config|

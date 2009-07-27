@@ -1,14 +1,17 @@
 require 'rubygems'
-require '<%= name %>'
+gem 'sinatra', ">=0.9.4"
+gem 'haml', ">=2.2.2"
+gem 'curb', ">=0.3.7"
+gem 'json', ">=1.1.6"
+gem 'oauth', ">=0.3.5"
+
+require File.join(File.dirname(__FILE__), 'lib', '<%= name %>')
 
 ENV['<%= name.upcase %>_READKEY'] = /\w{18}/.gen  # this should really be what twitter gives you
 ENV['<%= name.upcase %>_READSECRET'] = /\w{24}/.gen # this should really be what twitter gives you
 
 #DataMapper.setup(:default, "mysql://atmos:fail@localhost/<%= name.capitalize %>_production")
 
-class <%= name.camelize %>Site < <%= name.camelize %>::App
-  set :public,      File.expand_path(File.dirname(__FILE__), "public")
-  set :environment, :production
-end
+use Rack::Static, :urls => ["/css", "/img", "/js"], :root => "public"
 
-run <%= name.camelize %>Site
+run <%= name.camelize %>.app

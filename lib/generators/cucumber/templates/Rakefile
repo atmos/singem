@@ -2,8 +2,6 @@ require 'rubygems'
 require 'rake/gempackagetask'
 require 'rubygems/specification'
 require 'date'
-require 'spec/rake/spectask'
-require 'cucumber/rake/task'
 
 GEM = "<%= name %>"
 GEM_VERSION = "0.0.1"
@@ -52,14 +50,15 @@ task :make_spec do
   end
 end
 
-task :default => :features
+task :default => [:features, :spec]
 
+require 'cucumber/rake/task'
 desc "Run cucumber"
 Cucumber::Rake::Task.new do |t|
   t.cucumber_opts = %w{--format pretty}
 end
 
-
+require 'spec/rake/spectask'
 desc "Run specs"
 Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
