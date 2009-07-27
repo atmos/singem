@@ -4,6 +4,11 @@ require 'haml/util'
 require 'haml/engine'
 
 module <%= name.camelize %>
+  def self.app
+    @app ||= Rack::Builder.new do
+      run <%= name.camelize %>::App
+    end
+  end
 end
 
 require File.dirname(__FILE__)+'/<%= name %>/app'

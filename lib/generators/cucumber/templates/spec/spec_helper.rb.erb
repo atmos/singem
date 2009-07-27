@@ -33,8 +33,6 @@ Spec::Runner.configure do |config|
   end
 
   def app
-    @app = Rack::Builder.new do
-      run <%= name.camelize %>::App
-    end
+    <%= name.camelize %>.app
   end
 end
