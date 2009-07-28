@@ -2,6 +2,7 @@
 
 require 'rubygems'
 require 'rubigen'
+require 'digest/sha1'
 
 if %w(-v --version).include? ARGV.first
   require File.dirname(__FILE__) + "/../lib/newgem"

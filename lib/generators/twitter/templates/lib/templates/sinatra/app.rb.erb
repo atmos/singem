@@ -1,7 +1,6 @@
 module <%= name.camelize %>
   class App < Sinatra::Default
     set    :views, File.expand_path(File.dirname(__FILE__)+'/../views')
-    enable :sessions
     enable :methodoverride
 
     helpers do
