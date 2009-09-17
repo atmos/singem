@@ -1,9 +1,6 @@
-ENV['RACK_ENV'] ||= 'development'
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'vendor', 'gems', 'environment'))
+
 require File.join(File.dirname(__FILE__), '..', 'lib', '<%= name %>')
-gem "rack-test", ">=0.4.0"
-gem "webrat", "~>0.4.4"
-gem "fakeweb", ">=1.2.5"
-gem "randexp", ">=0.1.4"
 
 require 'randexp'
 require 'rack/test'
@@ -19,7 +16,7 @@ FakeWeb.allow_net_connect = false
 #DataMapper.setup(:default, 'sqlite3::memory:')
 
 Webrat.configure do |config|
-  config.mode = :rack_test
+  config.mode = :rack
   config.application_port = 4567
 end
 

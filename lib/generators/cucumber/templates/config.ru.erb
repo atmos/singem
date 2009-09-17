@@ -1,7 +1,5 @@
-require 'rubygems'
-gem 'sinatra', ">=0.9.4"
-gem 'haml', ">=2.2.2"
-require File.join(File.dirname(__FILE__), 'lib', '<%= name %>')
+require File.expand_path(File.join(File.dirname(__FILE__), 'vendor', 'gems', 'environment'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'lib', '<%= name %>'))
 
 #DataMapper.setup(:default, "mysql://atmos:fail@localhost/<%= name.capitalize %>_production")
 

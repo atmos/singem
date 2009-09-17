@@ -37,7 +37,7 @@ class CucumberGenerator < RubiGen::Base
       m.template "spec/templates_spec.rb.erb", "spec/#{name}_spec.rb"
       m.template "spec/fixtures.rb.erb", "spec/fixtures.rb"
 
-      %w(LICENSE Rakefile README.md).each do |file| 
+      %w(LICENSE Rakefile README.md Gemfile).each do |file| 
         m.template file, file
       end
       %w(TODO).each do |file| 
