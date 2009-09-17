@@ -5,11 +5,6 @@ class Net::HTTPResponse
   end
 end
 
-Webrat.configure do |config|
-  config.mode = :rack_test
-  config.application_port = 4567
-end
-
 module <%= name.camelize %>::AppHelpers
   def app
     <%= name.camelize %>.app

@@ -1,7 +1,29 @@
-require 'rubygems'
+require File.expand_path(File.join(File.dirname(__FILE__), 'vendor', 'gems', 'environment'))
 require 'rake/gempackagetask'
 require 'rubygems/specification'
 require 'date'
+require 'bundler'
+
+task :default => [:cucumber, :spec]
+
+require 'cucumber/rake/task'
+desc "Run cucumber"
+Cucumber::Rake::Task.new do |t|
+  t.cucumber_opts = %w{--format pretty}
+end
+
+require 'spec/rake/spectask'
+desc "Run specs"
+Spec::Rake::SpecTask.new do |t|
+  t.spec_files = FileList['spec/**/*_spec.rb']
+  t.spec_opts = %w(-fs --color)
+  t.spec_opts << '--loadby' << 'random'
+
+  t.rcov_opts << '--exclude' << 'spec'
+  t.rcov = ENV.has_key?('NO_RCOV') ? ENV['NO_RCOV'] != 'true' : true
+  t.rcov_opts << '--text-summary'
+  t.rcov_opts << '--sort' << 'coverage' << '--sort-reverse'
+end
 
 GEM = "<%= name %>"
 GEM_VERSION = "0.0.1"
@@ -22,19 +44,15 @@ spec = Gem::Specification.new do |s|
   s.email = EMAIL
   s.homepage = HOMEPAGE
 
-  s.add_dependency "sinatra", ">=0.9.4"
-  s.add_dependency "rack-test", ">=0.4.0"
-  s.add_dependency "webrat", "~>0.4.4"
-  s.add_dependency "cucumber", "~>0.3.91"
-  s.add_dependency "fakeweb", ">=1.2.5"
-  s.add_dependency 'haml', ">=2.2.2"
-  s.add_dependency 'curb', ">=0.3.7"
-  s.add_dependency 'json', ">=1.1.6"
-  s.add_dependency 'oauth', ">=0.3.5"
+  manifest = Bundler::Environment.load(File.dirname(__FILE__) + '/Gemfile')
+  manifest.dependencies.each do |d|
+    next if d.only && d.only.include?('test')
+    s.add_dependency(d.name, d.version)
+  end
 
   s.require_path = 'lib'
   s.autorequire = GEM
-  s.files = %w(LICENSE README.md Rakefile TODO) + Dir.glob("{lib,spec}/**/*")
+  s.files = %w(LICENSE README.md Rakefile TODO) + Dir.glob("{lib,features}/**/*")
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|
@@ -53,23 +71,3 @@ task :make_spec do
   end
 end
 
-task :default => [:features, :spec]
-
-require 'cucumber/rake/task'
-desc "Run cucumber"
-Cucumber::Rake::Task.new do |t|
-  t.cucumber_opts = %w{--format pretty}
-end
-
-require 'spec/rake/spectask'
-desc "Run specs"
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts = %w(-fs --color)
-  t.spec_opts << '--loadby' << 'random'
-
-  t.rcov_opts << '--exclude' << 'spec'
-  t.rcov = ENV.has_key?('NO_RCOV') ? ENV['NO_RCOV'] != 'true' : true
-  t.rcov_opts << '--text-summary'
-  t.rcov_opts << '--sort' << 'coverage' << '--sort-reverse'
-end

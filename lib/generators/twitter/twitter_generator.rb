@@ -28,7 +28,7 @@ class TwitterGenerator < RubiGen::Base
       # Create stubs
       m.template "config.ru.erb", "config.ru.example"
       m.template "lib/templates.rb.erb", "lib/#{name}.rb"
-      m.template "lib/templates/sinatra/app.rb.erb", "lib/#{name}/sinatra/app.rb"
+      m.template "lib/templates/app.rb.erb", "lib/#{name}/app.rb"
       m.template "lib/templates/models/user.rb.erb", "lib/#{name}/models/user.rb"
 
       # cucumber stubs
@@ -42,7 +42,7 @@ class TwitterGenerator < RubiGen::Base
       m.template "spec/templates_spec.rb.erb", "spec/#{name}_spec.rb"
       m.template "spec/fixtures.rb.erb", "spec/fixtures.rb"
 
-      %w(LICENSE Rakefile README.md).each do |file| 
+      %w(LICENSE Rakefile README.md Gemfile).each do |file| 
         m.template file, file
       end
       %w(TODO).each do |file| 

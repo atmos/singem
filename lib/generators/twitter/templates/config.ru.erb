@@ -1,10 +1,4 @@
-require 'rubygems'
-gem 'sinatra', ">=0.9.4"
-gem 'haml', ">=2.2.2"
-gem 'curb', ">=0.3.7"
-gem 'json', ">=1.1.6"
-gem 'oauth', ">=0.3.5"
-
+require File.expand_path(File.join(File.dirname(__FILE__), 'vendor', 'gems', 'environment'))
 require File.join(File.dirname(__FILE__), 'lib', '<%= name %>')
 
 ENV['<%= name.upcase %>_READKEY'] = /\w{18}/.gen  # this should really be what twitter gives you

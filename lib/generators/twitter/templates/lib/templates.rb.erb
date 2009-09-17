@@ -6,7 +6,6 @@ require 'curb'
 require 'logger'
 
 require 'dm-core'
-require 'dm-types'
 require 'dm-validations'
 require 'dm-timestamps'
 require 'sinatra/base'
@@ -44,6 +43,7 @@ module <%= name.camelize %>
 
   def self.app
     @app ||= Rack::Builder.new do
+      # use Rack::HoptoadNotifier 'mysecretkey' 
       use Rack::Session::Cookie, :key => 'rack.session', :path => '/',
         :expire_after => 2592000, :secret => '<%= ::Digest::SHA1.hexdigest(Time.now.to_s) %>'
       run <%= name.camelize %>::App
@@ -51,5 +51,5 @@ module <%= name.camelize %>
   end
 end
 
+require File.dirname(__FILE__)+'/<%= name %>/app'
 require File.dirname(__FILE__)+'/<%= name %>/models/user'
-require File.dirname(__FILE__)+'/<%= name %>/sinatra/app'
