@@ -1,11 +1,10 @@
-require 'rubygems'
 require 'rake/gempackagetask'
 require 'rubygems/specification'
 require 'date'
 require 'spec/rake/spectask'
 
 GEM = "singem"
-GEM_VERSION = "0.0.5"
+GEM_VERSION = "0.0.6"
 AUTHOR = "Corey Donohoe"
 EMAIL = "atmos@atmos.org"
 HOMEPAGE = "http://github.com/atmos/singem"
@@ -23,10 +22,8 @@ spec = Gem::Specification.new do |s|
   s.email = EMAIL
   s.homepage = HOMEPAGE
 
-  s.add_dependency "sinatra", ">=0.9.2"
-  s.add_dependency "rack-test", ">=0.4.0"
-  s.add_dependency "webrat", "~>0.4.4"
-  s.add_dependency "fakeweb", "~>1.2.5"
+  s.add_dependency "rubigen"
+  s.add_dependency "bundler"
 
   s.bindir = "bin"
   s.executables = %w( singem )
