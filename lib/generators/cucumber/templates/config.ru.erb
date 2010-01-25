@@ -1,4 +1,4 @@
-Bundler.require_env
+Bundler.require_env(:runtime)
 require File.expand_path(File.join(File.dirname(__FILE__), 'lib', '<%= name %>'))
 
 #DataMapper.setup(:default, "mysql://atmos:fail@localhost/<%= name.capitalize %>_production")

@@ -1,4 +1,4 @@
-Bundler.require_env
+Bundler.require_env(:runtime)
 require File.join(File.dirname(__FILE__), 'lib', '<%= name %>')
 
 ENV['<%= name.upcase %>_READKEY'] = /\w{18}/.gen  # this should really be what twitter gives you
