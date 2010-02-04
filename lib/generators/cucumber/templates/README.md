@@ -6,5 +6,5 @@ A sinatra app the provides a gem that...
 Developing
 ==========
     % gem install bundler
-    % gem bundle
-    % bin/rake
+    % bundle install
+    % bundle exec rake

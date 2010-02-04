@@ -1,4 +1,4 @@
-Bundler.require_env(:test)
+Bundler.require(:default, :runtime, :test)
 require File.join(File.dirname(__FILE__), '..', 'lib', '<%= name %>')
 require 'pp'
 

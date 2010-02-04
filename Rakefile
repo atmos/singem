@@ -4,7 +4,7 @@ require 'date'
 require 'spec/rake/spectask'
 
 GEM = "singem"
-GEM_VERSION = "0.0.7"
+GEM_VERSION = "0.1.0"
 AUTHOR = "Corey Donohoe"
 EMAIL = "atmos@atmos.org"
 HOMEPAGE = "http://github.com/atmos/singem"
@@ -23,7 +23,7 @@ spec = Gem::Specification.new do |s|
   s.homepage = HOMEPAGE
 
   s.add_dependency "rubigen"
-  s.add_dependency "bundler"
+  s.add_dependency "bundler", '~>0.9.3'
 
   s.bindir = "bin"
   s.executables = %w( singem )

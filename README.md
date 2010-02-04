@@ -20,13 +20,13 @@ Basic Sinatra App, no sessions, cucumber testing
 ------------------------------------------------
     % singem foo
     % cd foo
-    % gem bundle
-    % bin/rake
+    % bundle install
+    % bundle exec rake
 
 Basic Twitter OAuth App,
 ------------------------------
     % singem --twitter foo
     % cd foo
-    % gem bundle
-    % rake
+    % bundle install
+    % bundle exec rake
     % open http://twitter.com/oauth_clients

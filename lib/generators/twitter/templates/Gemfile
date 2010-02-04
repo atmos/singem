@@ -1,5 +1,7 @@
-only :runtime do
-  gem 'rack_hoptoad',       '~>0.1.1', :require_as => 'rack/hoptoad'
+source :gemcutter
+
+group :runtime do
+  gem 'rack_hoptoad',       '~>0.1.1', :require => 'rack/hoptoad'
   gem 'haml',               '~>2.2.0'
   gem 'sinatra',            '~>0.9.4'
   gem 'curb',               '>=0.3.7'
@@ -11,24 +13,19 @@ only :runtime do
   gem 'dm-timestamps',      '~>0.10.2'
 end
 
-only :development do
-  gem 'shotgun'
-end
-
-only :test do
+group :test do
   gem 'rake'
-  gem 'rspec',                       :require_as => 'spec'
+  gem 'rspec',                       :require => 'spec'
   gem 'rcov'
-  gem 'bundler',          '~>0.8.1'
+  gem 'shotgun'
+  gem 'bundler',          '~>0.9.3'
   gem 'cucumber'
   gem 'webrat',           '~>0.7.0'
-  gem 'rack-test',        '~>0.5.3', :require_as => 'rack/test'
+  gem 'rack-test',        '~>0.5.3', :require => 'rack/test'
   gem 'fakeweb',          '~>1.2.8'
   gem 'randexp',          '>=0.1.4'
-  #gem 'ParseTree',        '>=3.0.4', :require_as => [ ]
+  gem 'ParseTree',        '>=3.0.4', :require => [ ]
   #gem 'dm-sweatshop',     '~>0.10.2'
 end
-
-disable_system_gems
 
 # vim:ft=ruby

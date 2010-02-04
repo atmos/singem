@@ -6,5 +6,5 @@ A gem that provides...
 Developing
 ==========
     % gem install bundler
-    % gem bundle
-    % bin/rake
+    % bundle install
+    % bundle exec rake
