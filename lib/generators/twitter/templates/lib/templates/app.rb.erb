@@ -1,5 +1,5 @@
 module <%= name.camelize %>
-  class App < Sinatra::Default
+  class App < Sinatra::Base
     set    :views, File.expand_path(File.join(File.dirname(__FILE__), 'views'))
     enable :methodoverride
 
