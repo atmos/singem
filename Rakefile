@@ -4,7 +4,7 @@ require 'date'
 require 'spec/rake/spectask'
 
 GEM = "singem"
-GEM_VERSION = "0.1.1"
+GEM_VERSION = "0.1.2"
 AUTHOR = "Corey Donohoe"
 EMAIL = "atmos@atmos.org"
 HOMEPAGE = "http://github.com/atmos/singem"

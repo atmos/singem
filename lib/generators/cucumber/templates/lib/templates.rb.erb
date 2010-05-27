@@ -5,7 +5,7 @@ require 'haml/engine'
 module <%= name.camelize %>
   def self.app
     @app ||= Rack::Builder.new do
-      # use Rack::HoptoadNotifier 'mysecretkey' 
+      # use Rack::Hoptoad 'mysecretkey' 
       # use Rack::Session::Cookie, :key => 'rack.session', :path => '/',
       #  :expire_after => 2592000, :secret => '<%= ::Digest::SHA1.hexdigest(Time.now.to_s) %>'
       run <%= name.camelize %>::App
