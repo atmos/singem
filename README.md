@@ -30,3 +30,6 @@ Basic Twitter OAuth App,
     % bundle install --binstubs
     % bin/rake
     % open http://twitter.com/oauth_clients
+
+Test Commit
+-----------
