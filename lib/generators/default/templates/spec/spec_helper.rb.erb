@@ -1,29 +1,18 @@
-Bundler.require(:default, :runtime, :test)
+require "bundler/setup"
 
 require File.join(File.dirname(__FILE__), '..', 'lib', '<%= name %>')
-
-#require 'dm-core'
-#require 'dm-sweatshop'
-require 'pp'
-
-FakeWeb.allow_net_connect = false
-
-#require File.dirname(__FILE__)+'/fixtures'
-#DataMapper.setup(:default, 'sqlite3::memory:')
 
 Webrat.configure do |config|
   config.mode = :rack
   config.application_port = 4567
 end
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   config.include(Rack::Test::Methods)
   config.include(Webrat::Methods)
   config.include(Webrat::Matchers)
 
   config.before(:each) do
-    #DataMapper.auto_migrate!
-    FakeWeb.clean_registry
   end
 
   def app
