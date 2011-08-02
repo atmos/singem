@@ -1,7 +1,7 @@
 module <%= name.camelize %>
   class App < Sinatra::Base
     get '/' do
-      haml "%h2= 'Hello There, buddy!'"
+      erb "<h2>Hello There, buddy!</h2>"
     end
   end
 end

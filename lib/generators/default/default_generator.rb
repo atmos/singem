@@ -1,4 +1,4 @@
-class CucumberGenerator < RubiGen::Base
+class DefaultGenerator < RubiGen::Base
   DEFAULT_SHEBANG = File.join(Config::CONFIG['bindir'],
                               Config::CONFIG['ruby_install_name'])
 
@@ -21,7 +21,7 @@ class CucumberGenerator < RubiGen::Base
       m.directory "lib/#{name}"
 
       # Create stubs
-      m.template "config.ru.erb", "config.ru.example"
+      m.template "config.ru.erb", "config.ru"
       m.template "lib/templates.rb.erb", "lib/#{name}.rb"
       m.template "lib/templates/app.rb.erb", "lib/#{name}/app.rb"
 
