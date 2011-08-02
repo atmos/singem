@@ -12,8 +12,4 @@ RubiGen::Base.prepend_sources(*[
   RubiGen::PathSource.new(:app, File.join(File.dirname(__FILE__), "..", "lib/generators"))
 ])
 
-if ARGV.delete "--twitter"
-  RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'twitter', :backtrace => true)
-else
-  RubiGen::Scripts::Generate.new.run(ARGV, :generator => 'cucumber', :backtrace => true)
-end
+RubiGen::Scripts::Generate.new.run(ARGV, :generator => "default", :backtrace => true)

@@ -6,7 +6,7 @@ singem
 Installation
 ============
 
-    % sudo gem install singem
+    % gem install singem
 
 Or build it yourself
 
@@ -23,13 +23,3 @@ Basic Sinatra App, no sessions, cucumber testing
     % bundle install --binstubs
     % bin/rake
 
-Basic Twitter OAuth App,
-------------------------------
-    % singem --twitter foo
-    % cd foo
-    % bundle install --binstubs
-    % bin/rake
-    % open http://twitter.com/oauth_clients
-
-Test Commit
------------

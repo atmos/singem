@@ -1,8 +1,0 @@
-When /^I visit the home page$/ do
-  get '/'
-end
-
-Then /^I should be greeted$/ do
-  last_response.should have_selector("h2:contains('Hello There, buddy!')")
-end
-

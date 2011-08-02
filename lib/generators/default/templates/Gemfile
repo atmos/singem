@@ -1,0 +1,14 @@
+source :gemcutter
+
+gem 'sinatra',             '~>1.0'
+gem 'rack',                '~>1.1.0'
+
+group :test do
+  gem 'rake'
+  gem 'rspec',            '~>2.0'
+  gem 'shotgun'
+  gem 'bundler',          '~>1.0'
+  gem 'rack-test',        '~>0.5.3', :require => 'rack/test'
+end
+
+# vim:ft=ruby

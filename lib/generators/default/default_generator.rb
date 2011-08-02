@@ -1,4 +1,4 @@
-class TwitterGenerator < RubiGen::Base
+class CucumberGenerator < RubiGen::Base
   DEFAULT_SHEBANG = File.join(Config::CONFIG['bindir'],
                               Config::CONFIG['ruby_install_name'])
 
@@ -19,37 +19,21 @@ class TwitterGenerator < RubiGen::Base
       m.directory ''
       BASEDIRS.each { |path| m.directory path }
       m.directory "lib/#{name}"
-      m.directory "features/support"
-      m.directory "features/step_definitions"
-      m.directory "lib/#{name}/sinatra"
-      m.directory "lib/#{name}/models"
-      m.directory "lib/#{name}/views"
 
       # Create stubs
       m.template "config.ru.erb", "config.ru.example"
       m.template "lib/templates.rb.erb", "lib/#{name}.rb"
       m.template "lib/templates/app.rb.erb", "lib/#{name}/app.rb"
-      m.template "lib/templates/models/user.rb.erb", "lib/#{name}/models/user.rb"
-
-      # cucumber stubs
-      m.template "features/support/env.rb.erb", "features/support/env.rb"
-      m.template "features/basics.feature.erb", "features/#{name}.feature"
-      m.template "features/step_definitions/basics.rb.erb", "features/step_definitions/#{name}.rb"
 
       # rspec stubs
       m.template "spec/spec_helper.rb.erb", "spec/spec_helper.rb"
-      m.template "spec/helpers.rb.erb", "spec/helpers.rb"
       m.template "spec/templates_spec.rb.erb", "spec/#{name}_spec.rb"
-      m.template "spec/fixtures.rb.erb", "spec/fixtures.rb"
 
-      %w(LICENSE Rakefile README.md Gemfile).each do |file| 
+      %w(LICENSE Rakefile README.md Gemfile).each do |file|
         m.template file, file
       end
-      %w(TODO).each do |file| 
+      %w(TODO).each do |file|
         m.file file, file
-      end
-      %w(about failed home).each do |file|
-        m.file "lib/templates/views/#{file}.haml", "lib/#{name}/views/#{file}.haml"
       end
     end
   end
